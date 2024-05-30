@@ -1,4 +1,3 @@
-# NAME docker.io/giflw/wondevful:activemq-classic-TAG
 FROM docker.io/apache/activemq-classic:6.1.1
 
 # Username to access transport connector on the broker (JMS, ...).

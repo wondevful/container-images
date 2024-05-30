@@ -1,4 +1,3 @@
-# NAME docker.io/giflw/wondevful:activemq-artemis-TAG
 FROM docker.io/apache/activemq-artemis:2.33.0-alpine
 
 ENV ARTEMIS_USER=activemq
