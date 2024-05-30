@@ -1,0 +1,21 @@
+# NAME docker.io/giflw/wondevful:activemq-artemis-TAG
+FROM docker.io/apache/activemq-artemis:2.33.0-alpine
+
+ENV ARTEMIS_USER=activemq
+ENV ARTEMIS_PASSWORD=activemq
+ENV ANONYMOUS_LOGIN=false
+
+# Web Server
+EXPOSE 8161 \
+# JMX Exporter
+    9404 \
+# Port for CORE,MQTT,AMQP,HORNETQ,STOMP,OPENWIRE
+    61616 \
+# Port for HORNETQ,STOMP
+    5445 \
+# Port for AMQP
+    5672 \
+# Port for MQTT
+    1883 \
+#Port for STOMP
+    61613

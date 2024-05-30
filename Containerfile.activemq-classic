@@ -1,0 +1,34 @@
+# NAME docker.io/giflw/wondevful:activemq-classic-TAG
+FROM docker.io/apache/activemq-classic:6.1.1
+
+# Username to access transport connector on the broker (JMS, ...).
+# If not set, no user and password are required
+ENV ACTIVEMQ_CONNECTION_USER=activemq
+# Password to access transport connector on the broker (JMS, ...).
+# It should be used with ACTIVEMQ_CONNECTION_USER.
+ENV ACTIVEMQ_CONNECTION_PASSWORD=activemq
+# Username to access the JMX MBean server of the broker.
+# If set, ActiveMQ accepts remote JMX connection, else, only local connection are allowed.
+ENV ACTIVEMQ_JMX_USER=activemq
+# Password to access the JMX MBean server of the broker.
+# It should be used with ACTIVEMQ_JMX_USER.
+ENV ACTIVEMQ_JMX_PASSWORD=activemq
+# Username to access the ActiveMQ WebConsole.
+ENV ACTIVEMQ_WEB_USER=activemq
+# Password to access the ActiveMQ WebConsole.
+ENV ACTIVEMQ_WEB_PASSWORD=activemq
+
+# WebConsole
+EXPOSE 8161 \
+# JMX MBean server
+    1099 \
+# tcp connector
+    61616 \
+# AMQP connector
+    5672 \
+# STOMP connector
+    61613 \
+# MQTT connector
+    1883 \
+# WS connector
+    61614
