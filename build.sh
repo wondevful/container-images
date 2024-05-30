@@ -8,6 +8,7 @@ for file in `ls Containerfile.*`; do
     name=${name##*NAME }
 
     name=${name%%TAG}
+    latest=${name}latest
     tag=`head -n 2 $file | tail -n 1`
     tag=${tag##*:}
     # remove distro qualification
@@ -19,7 +20,17 @@ for file in `ls Containerfile.*`; do
 
     name=${name,,}
     echo $file: $name
+
     podman build . -f $file -t $name
     podman push $name
+    podman tag $name $latest
+    podman push $latest
+
     podman image rm $name
+    podman image rm $latest
+
+    unset name
+    unset latest
 done
+
+podman image prune --all --force
