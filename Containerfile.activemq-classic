@@ -31,3 +31,5 @@ EXPOSE 8161 \
     1883 \
 # WS connector
     61614
+
+RUN sed -i 's/name="authenticate" value="true"/name="authenticate" value="false"/g' /opt/apache-activemq/conf/jetty.xml

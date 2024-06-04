@@ -48,12 +48,12 @@ function build_container() {
     #$container_cmd image rm $latest
 }
 
-if [ $# -eq 0 ]; then
+if [ "$POSITIONAL_ARGS" == "" ]; then
     for file in `ls Containerfile.*`; do
         build_container $file
     done
 else
-    for file in $@; do
+    for file in $POSITIONAL_ARGS; do
         build_container $file
     done
 fi
