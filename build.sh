@@ -29,6 +29,7 @@ function build_container() {
     local tag=`grep FROM $file | head -n 1`
     tag=${tag##*:}
     # remove distro qualification
+    tag=${tag%%-bookworm*} # debian bookworm
     tag=${tag%%-ubuntu*}
     tag=${tag%%-alpine*}
 
