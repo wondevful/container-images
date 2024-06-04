@@ -1,4 +1,22 @@
 #!/bin/bash
+set -euo pipefail
+
+container_cmd=${CONTAINER_CMD:=podman}
+
+_PUSH=false
+POSITIONAL_ARGS=()
+for arg in $@; do
+    case "$1" in
+        -p|--push)
+            _PUSH=true ; shift ;;
+        -d|--debug)
+            set -x ; shift ;;
+        -*|--*)
+            echo "Unknown option $1" ; exit 1 ;; 
+        *)
+            POSITIONAL_ARGS+=("$1") ; shift ;;
+    esac
+done
 
 function build_container() {
     local file=$1
@@ -18,13 +36,16 @@ function build_container() {
     name=${name,,}
     echo $file: $name
 
-    podman build . -f $file -t $name
-    podman push $name
-    podman tag $name $latest
-    podman push $latest
+    $container_cmd build . -f $file -t $name
+    $container_cmd tag $name $latest
+    
+    if [ $_PUSH == true ]; then
+        $container_cmd push $name
+        $container_cmd push $latest
+    fi
 
-    #podman image rm $name
-    #podman image rm $latest
+    #$container_cmd image rm $name
+    #$container_cmd image rm $latest
 }
 
 if [ $# -eq 0 ]; then
@@ -37,4 +58,4 @@ else
     done
 fi
 
-#podman image prune --all --force
+#$container_cmd image prune --all --force
