@@ -42,7 +42,7 @@ function build_container() {
     
     if [ $_PUSH == true ]; then
         $container_cmd push $name
-        $container_cmd push $latest
+        grep "# NO-TAG-LATEST" $file &> /dev/null || $container_cmd push $latest
     fi
 
     #$container_cmd image rm $name

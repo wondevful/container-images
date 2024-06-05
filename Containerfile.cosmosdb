@@ -1,0 +1,4 @@
+FROM mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:mongodb
+
+# Expose the required network ports
+EXPOSE 8081 8901 8902 10250 10251 10252 10253 10254 10255 10350
