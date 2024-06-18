@@ -82,10 +82,10 @@ fi
 
 
 if [ $_PUSH == true ]; then
-    for $name in $TAGS_TIMESTAMP; do
+    for name in $TAGS_TIMESTAMP; do
         $container_cmd push $name
     done
-    for $name in $TAGS_LATEST; do
+    for name in $TAGS_LATEST; do
         $container_cmd push $name
     done
 #    grep "# NO-TAG-LATEST" $file &> /dev/null || $container_cmd push $latest
