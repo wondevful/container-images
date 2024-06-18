@@ -1,0 +1,4 @@
+FROM docker.io/giflw/wondevful:rockylinux-latest
+
+RUN microdnf -y --setopt=install_weak_deps=0 --setopt=tsflags=nodocs install java-21-openjdk-headless \
+    && microdnf clean -y all

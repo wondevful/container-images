@@ -1,0 +1,1 @@
+FROM docker.io/redhat/ubi9-minimal:9.4-1134

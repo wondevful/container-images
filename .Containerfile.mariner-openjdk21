@@ -1,0 +1,1 @@
+FROM mcr.microsoft.com/openjdk/jdk:21-mariner
