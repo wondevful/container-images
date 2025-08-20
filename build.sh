@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 timestamp=`date +"%y%m%d%H%M"`
@@ -76,6 +76,9 @@ if [ "$POSITIONAL_ARGS" == "" ]; then
     done
 else
     for file in $POSITIONAL_ARGS; do
+        if [ ! -f $file ]; then
+            file="Containerfile.${file}"
+        fi
         build_container $file
     done
 fi
